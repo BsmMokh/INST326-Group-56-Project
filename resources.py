@@ -17,3 +17,4 @@ def find_resource_info(name: str, resources: list[Resource]) -> str:
     Returns:
         str: Description from Resource.get_info() or "Resource not found."
     """
+    
