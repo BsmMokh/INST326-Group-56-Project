@@ -18,8 +18,7 @@ class Resource:
         required_tool (str): Minimum tool tier needed (e.g., "Iron Pickaxe").
         method (str): How to obtain (e.g., "Mining", "Smelting").
     """
-    def __init__(self, name: str, location: str, depth_range: tuple[int,int],
-                 required_tool: str, method: str):
+    def __init__(self, name: str, location: str, depth_range: tuple[int,int],required_tool: str, method: str):
         """Initialize a Resource instance."""
         self.name = name
         self.location = location
@@ -41,6 +40,7 @@ class Resource:
 def find_resource_info(name: str, resources: list[Resource]) -> str:
     """
     Search for a resource by name and return its info string.
+    Also supports loose matching (the user can input diamond that matches with Diamond Ore)
 
     Args:
         name (str): The resource to look up (case‑insensitive).
@@ -49,10 +49,26 @@ def find_resource_info(name: str, resources: list[Resource]) -> str:
     Returns:
         str: Description from Resource.get_info() or "Resource not found."
     """
+    #Convert the input to lowercase and remove any "ore" suffix
+    search_name = name.lower().replace(" ore", "")
+
     for resource in resources:
         if resource.name.lower() == name.lower():
             return resource.get_info()
+        
+    matches = []
+    for resource in resources:
+        resource_name = resource.name.lower().replace(" ore", "")
+        if search_name in resource_name:
+            matches.append(resource)
+    
+    if len(matches) == 1:
+        return matches[0].get_info()
+    elif len(matches) > 1:
+        return("Multiple resources found: Be more specific")
+
     return "Resource not found."
+
 
 def load_resources(path: str) -> list[Resource]:
     """
