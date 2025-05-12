@@ -7,7 +7,22 @@ including where to find them and what tools are needed to obtain them.
 
 from minecraft_resources import load_resources, find_resource_info
 
+def display_banner():
+    """Display a Minecraft Resource Guide Banner"""
+    banner = """
+     _  _  __  __ _  ____  ___  ____   __   ____  ____                            
+( \/ )(  )(  ( \(  __)/ __)(  _ \ / _\ (  __)(_  _)                           
+/ \/ \ )( /    / ) _)( (__  )   //    \ ) _)   )(                             
+\_)(_/(__)\_)__)(____)\___)(__\_)\_/\_/(__)   (__)                            
+ ____  ____  ____   __   _  _  ____   ___  ____     ___  _  _  __  ____  ____ 
+(  _ \(  __)/ ___) /  \ / )( \(  _ \ / __)(  __)   / __)/ )( \(  )(    \(  __)
+ )   / ) _) \___ \(  O )) \/ ( )   /( (__  ) _)   ( (_ \) \/ ( )(  ) D ( ) _) 
+(__\_)(____)(____/ \__/ \____/(__\_) \___)(____)   \___/\____/(__)(____/(____)
+    """
+    print(banner)
+
 def main():
+    display_banner()
     print("Welcome to the Minecraft Resource Guide!")
     print("This program will tell you where to find resources and what tools you need.")
     print("Type 'exit' to quit the program.\n")
